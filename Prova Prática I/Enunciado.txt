@@ -1,0 +1,101 @@
+Enunciado. A lista encadeada está disponível, mas cinco (5) métodos novos devem ser implementados:
+
+Statement. The linked list is available, but five (5) new methods must be implemented:
+
+(1) Inversão da lista, ou seja, o primeiro passa a ser o último, o segundo passa a ser o penúltimo, e assim por diante:
+
+List reversal, i.e., the first becomes the last, the second becomes the second-to-last, and so on:
+
+▷ void invert();
+
+Exemplo:
+
+Lista original: [A, B, C, D, E]
+
+Lista invertida após a chamada do método: [E, D, C, B, A]
+
+Example:
+
+Original list: [A, B, C, D, E]
+
+Reversed list after method call: [E, D, C, B, A]
+
+(2) Duplicação da lista, ou seja, os mesmos elementos acrescentados, na mesma ordem, no final:
+
+List duplication, i.e., the same elements are appended, in the same order, to the end:
+
+▷ void doubling();
+
+Exemplo:
+
+Lista original: [A, B, C]
+
+Lista duplicada após a chamada do método: [A, B, C, A, B, C]
+
+Example:
+
+Original list: [A, B, C]
+
+Duplicated list after method call: [A, B, C, A, B, C]
+
+(3) Criação de uma lista com dados das posições de início (start) até fim (stop), saltando com um passo (step):
+
+Creation of a list with elements from positions start to stop, skipping with a given step:
+
+▷ LinkedList<T> slicing(int start, int stop, int step);
+
+Exemplo:
+
+Lista original: [A, B, C, D, E, F, G, H]
+
+Lista de saída com start=1, stop=5, step=2: [B, D, F]
+
+Example:
+
+Original list: [A, B, C, D, E, F, G, H]
+
+Output list with start=1, stop=5, step=2: [B, D, F]
+
+(4) Um ponto de cruzamento (crossover) entre a lista original e uma lista de entrada (list_in), de mesmo tamanho par, exatamente no meio:
+
+A crossover point between the original list and an input list (list_in), with the same even size, exactly in the middle:
+
+▷ void crossover(LinkedList<T> *list_in);
+
+Exemplo:
+
+Lista original: [A, B, C, D, E, F]
+
+Lista de entrada list_in: [M, N, O, P, Q, R]
+
+Lista original após esta operação: [A, B, C, P, Q, R]
+
+Lista list_in após esta operação: [M, N, O, D, E, F]
+
+Example:
+
+Original list: [A, B, C, D, E, F]
+
+Input list list_in: [M, N, O, P, Q, R]
+
+Original list after operation: [A, B, C, P, Q, R]
+
+List list_in after operation: [M, N, O, D, E, F]
+
+(5) Criação de uma lista contendo outras duas listas: a primeira, correspondente aos dados em posições pares; a segunda, correspondente aos dados em posições ímpares:
+
+Creation of a list containing two other lists: the first with elements at even positions; the second with elements at odd positions:
+
+▷ LinkedList< LinkedList<T> * > halve();
+
+Exemplo:
+
+Lista original: [A, B, C, D, E]
+
+Multilista de saída: [ [A, C, E] , [B, D] ]
+
+Example:
+
+Original list: [A, B, C, D, E]
+
+Output multi-list: [ [A, C, E] , [B, D] ]
