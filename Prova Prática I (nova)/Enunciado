@@ -1,0 +1,64 @@
+INE5408 — Estruturas de Dados | Nova versão | C++11 ou superior
+Implemente os cinco métodos indicados em
+linked_list.h
+. A estrutura e os métodos básicos já estão disponíveis. Cada questão corresponde a 20% da nota (2 pontos em uma escala de 0 a 10).
+Implement the five methods marked in
+linked_list.h
+. The structure and basic operations are provided. Each question is worth 20% of the grade (2 points on a 0–10 scale).
+Regras / Rules
+Entregue apenas
+linked_list.h
+; não escreva
+main
+, não leia entrada nem imprima saídas. / Submit only
+linked_list.h
+; do not write a main function, read input, or print output.
+Altere somente os corpos dos cinco métodos e a identificação do aluno. Preserve nomes, assinaturas, atributos e métodos fornecidos. / Change only the five method bodies and student identification. Preserve the supplied interface and implementation.
+É permitido usar os métodos fornecidos, ponteiros para nós e listas auxiliares da própria classe. Não use vetores, arrays auxiliares, contêineres STL ou algoritmos prontos da STL. / Supplied methods, node pointers, and auxiliary lists of this class are allowed. Auxiliary arrays, STL containers, and STL algorithms are not allowed.
+Não copie nem atribua objetos
+LinkedList
+: esta implementação não possui cópia profunda. Não compartilhe nós entre listas ao término de uma operação. / Do not copy or assign LinkedList objects: this implementation has no deep copy. Lists must not share nodes after an operation.
+Preserve a consistência entre os nós e
+size_
+. A lista deve continuar utilizável e ser destruída corretamente. / Keep nodes and size_ consistent. Lists must remain usable and support correct destruction.
+Os métodos devem funcionar para tipos compatíveis com as operações descritas, incluindo inteiros e strings. Não há limite assintótico obrigatório; a correção funcional é avaliada automaticamente e as restrições de implementação podem ser verificadas pelo professor. / Methods must support compatible types, including integers and strings. No mandatory asymptotic bound is imposed; functionality is automatically assessed and implementation restrictions may be checked by the instructor.
+
+1. Rotação à esquerda / Left rotation
+void rotate_left(std::size_t k);
+Mova os primeiros k elementos para o final, preservando a ordem. Para uma lista de tamanho n > 0, use k módulo n. Lista vazia, k = 0 ou k múltiplo de n não altera a lista. O tamanho não muda.
+Move the first k elements to the end while preserving their order. For size n > 0, use k modulo n. An empty list, k = 0, or a multiple of n leaves the list unchanged. The size is preserved.
+Dica / Hint:
+k = k % size();
+Exemplo / Example:
+[A, B, C, D, E], k = 2 → [C, D, E, A, B]; k = 7 produz o mesmo resultado / gives the same result.
+
+2. Compactação de repetições consecutivas / Consecutive duplicate compression
+std::size_t compress_runs();
+Em cada sequência de valores consecutivos iguais, mantenha apenas a primeira ocorrência. Valores iguais separados por outros valores permanecem. Retorne a quantidade de elementos removidos. Compare os valores com ==. Lista vazia ou sem repetições consecutivas retorna 0.
+Keep only the first occurrence in each run of equal consecutive values. Equal values separated by other values remain. Return the number of removed elements. Compare values using ==. An empty list or a list without consecutive duplicates returns 0.
+Exemplo / Example:
+[4, 4, 2, 2, 2, 4, 4, 7] → [4, 2, 4, 7]; retorno / return = 4.
+
+3. Exclusão de intervalo / Range deletion
+void erase_range(std::size_t first, std::size_t last);
+Remova os elementos cujos índices originais pertencem ao intervalo [first, last): first é incluído e last é excluído. Os índices começam em zero. Exija 0 ≤ first ≤ last ≤ size(). Se first > last ou last > size(), lance std::out_of_range antes de modificar a lista. Um intervalo vazio é válido, inclusive [size(), size()).
+Remove elements at original indices in [first, last): first is included and last is excluded. Indices are zero-based. Require 0 ≤ first ≤ last ≤ size(). If first > last or last > size(), throw std::out_of_range before modifying the list. Empty ranges are valid, including [size(), size()).
+Exemplo / Example:
+[A, B, C, D, E, F], first = 1, last = 4 → [A, E, F].
+
+4. Intercalação com consumo / Consuming interleave
+void interleave(LinkedList<T>* other);
+Intercale os elementos desta lista e de other, começando por esta lista. Preserve a ordem interna de cada origem. Quando uma lista acabar, acrescente o restante da outra. Ao final, other deve estar vazia e esta lista deve conter todos os elementos. Se other for nullptr ou apontar para a própria lista, lance std::invalid_argument antes de qualquer alteração. Não destrua o objeto other; ele deve continuar utilizável.
+Interleave this list and other, starting with this list. Preserve the relative order from each source. Append the remainder when either list ends. Afterwards, other must be empty and this list must contain all elements. If other is nullptr or points to this list, throw std::invalid_argument before any change. Do not destroy other; it must remain usable.
+Dica / Hint:
+if (other == nullptr || other == this)
+   throw std::invalid_argument("Lista de entrada inválida / Invalid input list");
+Exemplo / Example:
+Esta / this = [A, B, C], other = [X, Y] → esta / this = [A, X, B, Y, C], other = [].
+
+5. Particionamento estável / Stable partition
+std::size_t stable_partition(const T& pivot);
+Reorganize a lista colocando primeiro os elementos menores que pivot e, depois, os demais. Preserve a ordem relativa dos elementos dentro de cada grupo: não ordene a lista. Use apenas o operador < para classificar: o segundo grupo contém os elementos para os quais data < pivot é falso. Retorne o número de elementos do primeiro grupo. O tamanho não muda. A lista vazia retorna 0. Nos testes, pivot é um valor externo à lista.
+Rearrange the list so that elements less than pivot precede all remaining elements. Preserve relative order within each group: do not sort the list. Classify using only <: the second group contains values for which data < pivot is false. Return the size of the first group. The total size is unchanged. An empty list returns 0. Tests use a pivot external to the list.
+Exemplo / Example:
+[7, 2, 5, 1, 5, 3, 8], pivot = 5 → [2, 1, 3, 7, 5, 5, 8]; retorno / return = 3.
